@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import {Poppins} from 'next/font/google'
 import "./globals.css";
-import ResponsiveNav from "@/components/Home/Navbar/ResponsiveNav";
-import { Footer } from "@/components/Home";
-import ScrollToTop from "@/components/Helper/ScrollToTop";
+
+import { Toaster } from 'react-hot-toast';
+
+import LayoutWrapper from '@/components/Home/Navbar/LayoutWrapper';
 
 const font = Poppins({
   weight:['100','200','300','400','500','600','700','800','900'],
@@ -11,8 +12,8 @@ const font = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "ChordsCraft - Music Learning Platform",
-  description: "Learn music instruments, singing, and dancing with expert instructors",
+  title: "AhaarSetu - Digital Medical Passport",
+  description: "Connecting Farms, Medicines & Market Digitally",
 };
 
 export default function RootLayout({
@@ -20,16 +21,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/logo.ico" />
       </head>
       <body className={` ${font.className}`}>
-        <ResponsiveNav />
-        {children}
-        <Footer/>
-        <ScrollToTop/>
+        <Toaster position="bottom-center" />
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );

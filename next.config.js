@@ -10,6 +10,7 @@ const nextConfig = {
     // there are ESLint errors. We'll address lint issues separately.
     ignoreDuringBuilds: true,
   },
+  output: 'export',
   // Handle missing assets gracefully
   webpack: (config, { isServer }) => {
     // Add fallback for missing modules

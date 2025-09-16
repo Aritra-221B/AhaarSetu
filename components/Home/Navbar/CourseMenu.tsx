@@ -114,7 +114,7 @@ const CourseMenu = () => {
                         </div>
                         <div>
                           <h4 className="text-gray-800 font-medium group-hover:text-blue-600">{item.name}</h4>
-                          <p className="text-gray-500 text-sm">Start learning today</p>
+                          <p className="text-gray-500 text-sm">Start you farm today</p>
                         </div>
                         <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                           <svg className="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

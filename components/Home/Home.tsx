@@ -1,21 +1,17 @@
 import React from 'react'
-import Counter from './Counter/Counter'
+import Tutorial from './Tutorial/Tutorial'
 import Hero from './Hero/Hero'
-import FoundersDesk from './FoundersDesk/FoundersDesk'
-import Reviews from './Reviews/Reviews'
+import Features from './Features/Features'
 import FaqsSection from './FaqsSection/FaqsSection'
-import AboutTwo from './AboutTwo/AboutTwo'
-import Teacher from './Teacher/Teacher'
+import About from './About/About'
 
 const Home = () => {
   return (
     <div className='overflow-hidden'>
       <Hero/>
-      <AboutTwo/>
-      <Counter/>
-      <FoundersDesk/>
-      <Reviews/>
-      <Teacher/>
+      <About/>
+      <Tutorial/>
+      <Features/>
       <FaqsSection/>
     </div>
   )

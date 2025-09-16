@@ -51,7 +51,7 @@ const Nav = ({ openNav, setShowPopup }: NavOpener) => {
       {/* ✅ Actual Navbar */}
       <div
         className={`${
-          navBg ? 'bg-blue-950 shadow-md' : 'fixed'
+          navBg ? 'bg-green-950 shadow-md' : 'fixed'
         } transition-all duration-200 h-[12vh] z-[1000] fixed w-full`}
       >
         <div className="flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto">
@@ -68,12 +68,12 @@ const Nav = ({ openNav, setShowPopup }: NavOpener) => {
                 />
               </div>
               <div className="flex flex-col items-center">
-                <h1 className="text-lg md:text-xl text-white uppercase font-bold">
-                  chordscraft
-                </h1>
-                <span className="text-white font-semibold">
-                  Institute Of Music
+                <h1 className="text-lg md:text-xl uppercase font-bold bg-gradient-to-r from-green-50 via-green-100 to-green-50 text-transparent bg-clip-text">
+                  Ahaar
+                <span className="">
+                  Setu
                 </span>
+                </h1>
               </div>
             </Link>
           </div>
@@ -89,7 +89,7 @@ const Nav = ({ openNav, setShowPopup }: NavOpener) => {
                     key={link.id}
                     onClick={() => setShowPopup(true)}
                     className="relative text-white text-lg font-medium w-fit block after:block after:content-[''] 
-                    after:absolute after:h-[3px] after:bg-yellow-300 after:w-full after:scale-x-0 
+                    after:absolute after:h-[3px] after:bg-orange-800 after:w-full after:scale-x-0 
                     after:hover:scale-x-100 after:transition duration-300 after:origin-center"
                   >
                     {link.label}
@@ -98,17 +98,27 @@ const Nav = ({ openNav, setShowPopup }: NavOpener) => {
                   <Link href="#about" key={link.id} onClick={(e) => handleScroll(e, 'about')}>
                     <p
                       className="relative text-white text-lg font-medium w-fit block after:block after:content-[''] 
-                    after:absolute after:h-[3px] after:bg-yellow-300 after:w-full after:scale-x-0 
+                    after:absolute after:h-[3px] after:bg-orange-800 after:w-full after:scale-x-0 
                     after:hover:scale-x-100 after:transition duration-300 after:origin-center"
                     >
                       {link.label}
                     </p>
                   </Link>
-                )  : (
+                )  : link.label === 'Features' ? (
+                  <Link href="/features" key={link.id}>
+                    <p
+                      className="relative text-white text-lg font-medium w-fit block after:block after:content-[''] 
+                    after:absolute after:h-[3px] after:bg-orange-800 after:w-full after:scale-x-0 
+                    after:hover:scale-x-100 after:transition duration-300 after:origin-center"
+                    >
+                      {link.label}
+                    </p>
+                  </Link>
+                ) : (
                   <Link href={link.url} key={link.id}>
                     <p
                       className="relative text-white text-lg font-medium w-fit block after:block after:content-[''] 
-                    after:absolute after:h-[3px] after:bg-yellow-300 after:w-full after:scale-x-0 
+                    after:absolute after:h-[3px] after:bg-orange-800 after:w-full after:scale-x-0 
                     after:hover:scale-x-100 after:transition duration-300 after:origin-center"
                     >
                       {link.label}
@@ -120,8 +130,8 @@ const Nav = ({ openNav, setShowPopup }: NavOpener) => {
 
           {/* Right Side: Book Now + Hamburger */}
           <div className="flex items-center space-x-4">
-            <Link href="/book-now" className="ml-3 md:px-4 md:py-2 px-2 py-1.5 text-gray-900 text-xs md:text-base bg-white hover:bg-gray-200 transition-all duration-200 rounded-lg">
-              Book Now
+            <Link href="/startup" className="ml-3 md:px-4 md:py-2 px-2 py-1.5 text-gray-50 text-xs md:text-base bg-orange-900 hover:bg-gray-200 transition-all duration-200 rounded-lg">
+              Register
             </Link>
             <HiBars3BottomRight
               onClick={openNav}

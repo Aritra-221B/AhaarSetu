@@ -6,30 +6,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 const faqs = [
-  {
-    question: "What is the right age to start learning music?",
-    answer: "There is no fixed age to begin — music can be learned at any stage of life. Children as young as 4–5 years can start with basic rhythm and ear training, while teens and adults can directly explore instruments or vocals. At ChordsCraft, we design lessons suited to your age and learning pace.",
-  },
-  {
-    question: "Are online lessons as effective as offline lessons?",
-    answer: "Yes! With today's technology, online lessons are just as effective as offline. We provide live interactive classes, personalized feedback, and resources like backing tracks, sheet music, and recordings — ensuring you learn effectively from the comfort of your home.",
-  },
-  {
-    question: "Do you provide Trinity & ABRSM certification?",
-    answer: "Yes. We prepare students for Trinity, ABRSM, MTB, and RSL certifications with expert guidance from certified faculty. These globally recognized certifications add credibility to your skills and support professional opportunities.",
-  },
-  {
-    question: "How much time do I need to invest to learn an instrument or singing?",
-    answer: "It depends on your goals. With regular practice of 30–60 minutes daily, most beginners start playing simple songs within 3–6 months. For professional mastery, consistent learning over a few years is recommended.",
-  },
-  {
-    question: "Can I learn music even if I have no prior experience?",
-    answer: "Absolutely! Our programs are tailored for complete beginners to advanced learners. You don’t need any background — just interest and dedication.",
-  },
-  {
-    question: "Do you offer flexible class timings?",
-    answer: "Yes, we offer flexible scheduling options to suit students, working professionals, and hobby learners. You can choose weekday or weekend batches at timings convenient for you.",
-  },
+{
+  question: 'Is my data secure?',
+  answer:
+    'Yes, we use state-of-the-art security measures to protect your data. All information is encrypted and stored securely in the cloud.',
+},
+{
+  question: 'Can I access the platform on my phone?',
+  answer:
+    'Absolutely! Our platform is fully responsive and works on all devices, including desktops, tablets, and smartphones.',
+},
+{
+  question: 'What if I have a lot of animals?',
+  answer:
+    'Our platform is designed to handle farms of all sizes, from small family farms to large commercial operations. You can easily manage thousands of animals.',
+},
+{
+  question: 'How do I share the medicine passport with buyers?',
+  answer:
+    'You can generate a unique, shareable link for each animal\'s medicine passport. You can also print a QR code that buyers can scan to view the passport.',
+},
 ];
 
 export default function FaqsSection() {
@@ -55,7 +51,7 @@ export default function FaqsSection() {
   };
 
   return (
-    <section className="max-w-4xl mx-auto p-6">
+    <section className=" max-w-4xl mx-auto p-6">
       <motion.h2 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

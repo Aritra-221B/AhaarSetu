@@ -1,33 +1,28 @@
 export const navLinks = [
     {
         id:1,
-        url:'#',
-        label:'Courses',
+        url:'/farmer',
+        label:'Scan QR',
     },
     {
         id:2,
-        url:'/team',
-        label:'Team',
+        url:'/dashboard',
+        label:'AMU Checker',
     },
     {
         id:3,
-        url:'/games',
-        label:'Games',
-    },
-    {
-        id:4,
         url:'#about',
         label:'About',
     },
     {
-        id:5,
+        id:4,
         url:'#',
         label:'Contact',
     },
     {
         id:6,
-        url:'#',
-        label:'Teach with us',
+        url:'/traininghub',
+        label:'Training Hub',
     },
     
 ];

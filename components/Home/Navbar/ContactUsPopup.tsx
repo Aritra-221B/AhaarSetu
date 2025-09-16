@@ -33,7 +33,7 @@ const ContactUsPopup = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                 : 'bg-gray-100 hover:bg-gray-200'
             }`}
           >
-            <PhoneCall className="mx-auto mb-2 text-indigo-600 w-6 h-6" />
+            <PhoneCall className="mx-auto mb-2 text-gray-600 w-6 h-6" />
             <p className="font-semibold text-gray-800">Call</p>
           </button>
 
@@ -45,8 +45,8 @@ const ContactUsPopup = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                 : 'bg-gray-100 hover:bg-gray-200'
             }`}
           >
-            <Mail className="mx-auto mb-2 text-red-600 w-6 h-6" />
-            <p className="font-semibold text-red-600">Email</p>
+            <Mail className="mx-auto mb-2 text-gray-600 w-6 h-6" />
+            <p className="font-semibold text-gray-600">Email</p>
           </button>
         </div>
 
@@ -62,7 +62,7 @@ const ContactUsPopup = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                 transition={{ duration: 0.3 }}
               >
                 <h4 className="text-base sm:text-lg font-medium text-gray-800 mb-1">Contact Us</h4>
-                <p className="text-red-600 text-lg sm:text-xl font-semibold">+91 1234567890</p>
+                <p className="text-green-600 text-lg sm:text-xl font-semibold">+91 74928 13056</p>
               </motion.div>
             ) : (
               <motion.div
@@ -73,7 +73,7 @@ const ContactUsPopup = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                 transition={{ duration: 0.3 }}
               >
                 <h4 className="text-base sm:text-lg font-medium text-gray-800 mb-1">Email Us</h4>
-                <p className="text-red-600 text-sm sm:text-base font-semibold">info@chordscraftinstituteofmusic.com</p>
+                <p className="text-green-600 text-sm sm:text-base font-semibold">info@ahaarsetu.com</p>
               </motion.div>
             )}
           </AnimatePresence>

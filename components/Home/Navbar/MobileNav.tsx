@@ -59,7 +59,7 @@ const MobileNav = ({ closeNav, showNav, setShowPopup }: Props) => {
       />
 
       {/* Mobile Navigation Panel */}
-      <div className={`text-white ${navOpen} fixed left-0 top-0 bottom-0 justify-start flex flex-col h-full transform transition-all duration-500 w-[80%] sm:w-[60%] bg-blue-950 space-y-6 z-[2001] overflow-y-auto py-10 px-6 pointer-events-auto`}>
+      <div className={`text-white ${navOpen} fixed left-0 top-0 bottom-0 justify-start flex flex-col h-full transform transition-all duration-500 w-[80%] sm:w-[60%] bg-green-950 space-y-6 z-[2001] overflow-y-auto py-10 px-6 pointer-events-auto`}>
         {/* Close button */}
         <CgClose onClick={closeNav} className="absolute top-[0.7rem] right-[1.4rem] sm:w-8 sm:h-8 w-6 h-6 cursor-pointer" />
         
@@ -70,7 +70,7 @@ const MobileNav = ({ closeNav, showNav, setShowPopup }: Props) => {
                 <div key={link.id} className="w-full">
                   <button
                     onClick={() => setCourseOpen(!courseOpen)}
-                    className="text-white text-[20px] sm:text-[24px] flex items-center justify-between w-full border-b-[1.5px] py-2 border-white/30 hover:text-yellow-300 transition"
+                    className="text-white text-[20px] sm:text-[24px] flex items-center justify-between w-full border-b-[1.5px] py-2 border-white/30 hover:text-orange-900 transition"
                   >
                     Courses
                     <span className={`transform transition-transform duration-300 ${courseOpen ? 'rotate-180' : 'rotate-0'}`}>
@@ -87,7 +87,7 @@ const MobileNav = ({ closeNav, showNav, setShowPopup }: Props) => {
                         <div key={category.name} className="border-l-2 border-white/20 pl-4">
                           <button 
                             onClick={() => toggleCategory(category.name)}
-                            className="font-medium text-yellow-300 flex items-center justify-between w-full hover:text-yellow-400 transition py-1"
+                            className="font-medium text-orange-900 flex items-center justify-between w-full hover:text-orange-900 transition py-1"
                           >
                             {category.name}
                             <span className={`transform transition-transform duration-300 ${activeCategory === category.name ? 'rotate-180' : 'rotate-0'}`}>
@@ -131,7 +131,7 @@ const MobileNav = ({ closeNav, showNav, setShowPopup }: Props) => {
                   closeNav();
                   setShowPopup(true);
                 }}>
-                  <p className="text-white text-[20px] sm:text-[24px] w-full border-b-[1.5px] py-2 border-white/30 hover:text-yellow-300 transition">
+                  <p className="text-white text-[20px] sm:text-[24px] w-full border-b-[1.5px] py-2 border-white/30 hover:text-orange-900 transition">
                     {link.label}
                   </p>
                 </Link>
@@ -141,7 +141,7 @@ const MobileNav = ({ closeNav, showNav, setShowPopup }: Props) => {
             if (link.label === 'About') {
               return (
                 <Link key={link.id} href="#about" onClick={(e) => handleScroll(e, 'about')}>
-                  <p className="text-white text-[20px] sm:text-[24px] w-full border-b-[1.5px] py-2 border-white/30 hover:text-yellow-300 transition">
+                  <p className="text-white text-[20px] sm:text-[24px] w-full border-b-[1.5px] py-2 border-white/30 hover:text-orange-900 transition">
                     {link.label}
                   </p>
                 </Link>
@@ -150,19 +150,12 @@ const MobileNav = ({ closeNav, showNav, setShowPopup }: Props) => {
             
             return (
               <Link key={link.id} href={link.url} onClick={closeNav}>
-                <p className="text-white text-[20px] sm:text-[24px] w-full border-b-[1.5px] py-2 border-white/30 hover:text-yellow-300 transition">
+                <p className="text-white text-[20px] sm:text-[24px] w-full border-b-[1.5px] py-2 border-white/30 hover:text-orange-900 transition">
                   {link.label}
                 </p>
               </Link>
             );
           })}
-        </div>
-        
-        {/* Book Now button */}
-        <div className="pt-6 mt-auto">
-          <Link href="/book-now" className="ml-3 md:px-4 md:py-2 px-2 py-1.5 text-gray-900 text-xs md:text-base bg-white hover:bg-gray-200 transition-all duration-200 rounded-lg">
-            Book Now
-          </Link>
         </div>
       </div>
       
