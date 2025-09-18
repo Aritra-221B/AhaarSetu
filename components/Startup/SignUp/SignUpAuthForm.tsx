@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { FaUser, FaStethoscope, FaBuilding, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaUser, FaStethoscope, FaEye, FaEyeSlash } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
@@ -10,7 +10,7 @@ interface SignUpAuthFormProps {
 
 const SignUpAuthForm: React.FC<SignUpAuthFormProps> = ({ toggleForm }) => {
   const router = useRouter();
-  const [selectedRole, setSelectedRole] = useState<'farmer' | 'veterinarian' | 'authority' | null>(null);
+  const [selectedRole, setSelectedRole] = useState<'farmer' | 'veterinarian' | null>(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [fullName, setFullName] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
@@ -99,24 +99,7 @@ const SignUpAuthForm: React.FC<SignUpAuthFormProps> = ({ toggleForm }) => {
           <span className="font-medium">Veterinarian</span>
         </div>
 
-        <div
-          className={`flex items-center p-3 sm:p-4 border rounded-xl cursor-pointer transition-all duration-200
-            ${
-              selectedRole === 'authority'
-                ? 'border-green-600 bg-green-100 text-green-800 shadow-sm'
-                : 'border-gray-300 hover:border-green-400 hover:shadow-sm'
-            }
-            ${roleError ? 'border-red-500' : ''}
-            `}
-          onClick={() => {
-            setSelectedRole('authority');
-            setRoleError('');
-          }}
-        >
-          <FaBuilding className="text-lg sm:text-xl mr-3" />
-          <span className="font-medium">Authority</span>
-        </div>
-        {roleError && <p className="text-red-500 text-sm mt-2">{roleError}</p>}
+        
       </div>
 
       <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">

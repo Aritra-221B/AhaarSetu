@@ -1,197 +1,179 @@
-import React, { useState } from 'react';
-import { Plus, Eye, Users, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
-import { FarmAnimal, Animal } from './FarmAnimal'; // Import FarmAnimal component and Animal interface
+'use client';
+
+import React, { useMemo, useState } from 'react';
+import { Users, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
+import Overview from './Overview/Overview';
+import AnimalsTab from './FarmAnimals/Animals';
+import TreatmentsTab from './Treatments/Treatments';
+
+interface Animal {
+	id: string;
+	name: string;
+	type: string;
+	breed: string;
+	age: string;
+	weight: string;
+	lastTreatment: string;
+	nextCheckup: string;
+	lastCheckup: string;
+	status: 'safe' | 'warning' | 'not-safe';
+}
+
+interface TreatmentLog {
+	id: string;
+	animalId: string;
+	medicine: string;
+	date: string;
+	veterinarian: string;
+	notes?: string;
+}
 
 const mockAnimals: Animal[] = [
-  {
-    id: 'CT001',
-    name: 'Dairy Cow #1',
-    type: 'Cattle',
-    breed: 'Holstein Friesian',
-    age: '3 years',
-    weight: '450 kg',
-    lastTreatment: '2024-01-15',
-    nextCheckup: '2024-02-20',
-    status: 'safe',
-  },
-  {
-    id: 'CT002',
-    name: 'Dairy Cow #2',
-    type: 'Cattle',
-    breed: 'Jersey',
-    age: '2 years',
-    weight: '380 kg',
-    lastTreatment: '2024-01-20',
-    nextCheckup: '2024-02-15',
-    status: 'warning',
-  },
-  {
-    id: 'PL001',
-    name: 'Pig #1',
-    type: 'Pig',
-    breed: 'Large White',
-    age: '1 years',
-    weight: '120 kg',
-    lastTreatment: '2024-01-10',
-    nextCheckup: '2024-02-10',
-    status: 'safe',
-  },
+	{
+		id: 'CT001',
+		name: 'Dairy Cow #1',
+		type: 'Cattle',
+		breed: 'Holstein Friesian',
+		age: '3 years',
+		weight: '450 kg',
+		lastTreatment: '2024-01-15',
+		nextCheckup: '2024-02-20',
+		lastCheckup: '2024-01-15',
+		status: 'safe',
+	},
+	{
+		id: 'CT002',
+		name: 'Dairy Cow #2',
+		type: 'Cattle',
+		breed: 'Jersey',
+		age: '2 years',
+		weight: '380 kg',
+		lastTreatment: '2024-01-20',
+		nextCheckup: '2024-02-15',
+		lastCheckup: '2024-01-20',
+		status: 'warning',
+	},
+	{
+		id: 'PL001',
+		name: 'Pig #1',
+		type: 'Pig',
+		breed: 'Large White',
+		age: '1 years',
+		weight: '120 kg',
+		lastTreatment: '2024-01-10',
+		nextCheckup: '2024-02-10',
+		lastCheckup: '2024-01-10',
+		status: 'safe',
+	},
+];
+
+const mockTreatments: TreatmentLog[] = [
+	{ id: 'TR001', animalId: 'CT001', medicine: 'Amoxicillin', date: '2024-01-22', veterinarian: 'Dr. Rao', notes: 'Completed; withdrawal 7 days' },
+	{ id: 'TR002', animalId: 'CT002', medicine: 'Ivermectin', date: '2024-01-25', veterinarian: 'Dr. Singh' },
 ];
 
 export const FarmerDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'animals' | 'treatments'>('overview');
-  const [animals] = useState<Animal[]>(mockAnimals);
+	const [activeTab, setActiveTab] = useState<'overview' | 'animals' | 'treatments'>('overview');
+	const [animals] = useState<Animal[]>(mockAnimals);
+	const [treatments] = useState<TreatmentLog[]>(mockTreatments);
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'safe': return 'text-green-600 bg-green-100';
-      case 'warning': return 'text-yellow-600 bg-yellow-100';
-      case 'risk': return 'text-red-600 bg-red-100';
-      default: return 'text-gray-600 bg-gray-100';
-    }
-  };
+	const getStatusStats = () => {
+		const total = animals.length;
+		const safe = animals.filter((a) => a.status === 'safe').length;
+		const warning = animals.filter((a) => a.status === 'warning').length;
+		const notSafe = animals.filter((a) => a.status === 'not-safe').length;
+		return { total, safe, warning, notSafe };
+	};
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'safe': return <CheckCircle className="h-4 w-4" />;
-      case 'warning': return <AlertTriangle className="h-4 w-4" />;
-      case 'risk': return <XCircle className="h-4 w-4" />;
-      default: return null;
-    }
-  };
+	const stats = getStatusStats();
+	const recentActivity = useMemo(
+		() => [
+			{ id: 'ac1', type: 'success' as const, title: 'Treatment complete for CT001', detail: 'Amoxicillin administered · Safe Date: 2024-01-22' },
+			{ id: 'ac2', type: 'warning' as const, title: 'Checkup Reminder for CT002', detail: 'Next checkup due on 2024-02-15' },
+		],
+		[]
+	);
 
-  const getStatusStats = () => {
-    const total = animals.length;
-    const safe = animals.filter((a) => a.status === 'safe').length;
-    const warning = animals.filter((a) => a.status === 'warning').length;
-    const notSafe = animals.filter((a) => a.status === 'risk').length;
-    return { total, safe, warning, notSafe };
-  };
+	return (
+		<div className="min-h-screen bg-green-50 rounded-2xl p-8">
+			<div className="max-w-7xl mx-auto">
+			<div className="mb-10 text-center">
+				<h2 className="text-4xl font-bold text-green-800">Farmer Dashboard</h2>
+				<p className="text-green-600 mt-2">Manage your livestock and track medicine compliance</p>
+			</div>
 
-  const stats = getStatusStats();
+			<div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+				<div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
+					<div className="flex items-center">
+						<div className="p-3 bg-blue-100 rounded-full"><Users className="h-7 w-7 text-blue-600" /></div>
+						<div className="ml-4">
+							<p className="text-md font-medium text-gray-600">Total Animals</p>
+							<p className="text-3xl font-bold text-gray-900">{stats.total}</p>
+						</div>
+					</div>
+				</div>
+				<div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
+					<div className="flex items-center">
+						<div className="p-3 bg-green-100 rounded-full"><CheckCircle className="h-7 w-7 text-green-600" /></div>
+						<div className="ml-4">
+							<p className="text-md font-medium text-gray-600">Safe</p>
+							<p className="text-3xl font-bold text-gray-900">{stats.safe}</p>
+						</div>
+					</div>
+				</div>
+				<div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
+					<div className="flex items-center">
+						<div className="p-3 bg-yellow-100 rounded-full"><AlertTriangle className="h-7 w-7 text-yellow-600" /></div>
+						<div className="ml-4">
+							<p className="text-md font-medium text-gray-600">Under Observation</p>
+							<p className="text-3xl font-bold text-gray-900">{stats.warning}</p>
+						</div>
+					</div>
+				</div>
+				<div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
+					<div className="flex items-center">
+						<div className="p-3 bg-red-100 rounded-full"><XCircle className="h-7 w-7 text-red-600" /></div>
+						<div className="ml-4">
+							<p className="text-md font-medium text-gray-600">Not Safe</p>
+							<p className="text-3xl font-bold text-gray-900">{stats.notSafe}</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-green-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Farmer Dashboard</h1>
-          <p className="text-gray-600 mt-2">Manage your livestock and track medicine compliance</p>
-        </div>
+			<div className="bg-white rounded-xl shadow-lg border border-gray-200 mb-8">
+				<div className="border-b border-gray-200 px-6 sm:px-8">
+					<nav className="-mb-px flex space-x-8" aria-label="Tabs">
+						{
+							(
+								[
+									{ id: 'overview', label: 'Overview' },
+									{ id: 'animals', label: 'Animals' },
+									{ id: 'treatments', label: 'Treatments' },
+								] as const
+							).map((t) => (
+								<button
+									key={t.id}
+									onClick={() => setActiveTab(t.id)}
+									className={`py-4 px-1 text-base font-medium border-b-2 transition-colors duration-200 ease-in-out ${
+										activeTab === t.id ? 'border-green-600 text-green-700' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+									}`}
+								>
+									{t.label}
+								</button>
+							))}
+					</nav>
+				</div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Users className="h-6 w-6 text-blue-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total Animals</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-green-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Safe for Sale</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.safe}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center">
-              <div className="p-2 bg-yellow-100 rounded-lg">
-                <AlertTriangle className="h-6 w-6 text-yellow-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Under Observation</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.warning}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center">
-              <div className="p-2 bg-red-100 rounded-lg">
-                <XCircle className="h-6 w-6 text-red-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Not Safe</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.notSafe}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Tabs */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
-          <div className="border-b border-gray-200">
-            <nav className="flex flex-wrap sm:flex-nowrap justify-around sm:justify-start gap-y-2 sm:space-x-10 px-4 sm:px-8" aria-label="Tabs">
-              {[
-                { id: 'overview', name: 'Overview', icon: Eye },
-                { id: 'animals', name: 'Animals', icon: Users },
-                { id: 'treatments', name: 'Treatments', icon: Plus },
-              ].map((tab) => {
-                const IconComponent = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                    className={`flex-1 sm:flex-none flex items-center justify-center sm:justify-start py-3 px-2 sm:px-4 border-b-2 font-medium text-sm ${
-                      activeTab === tab.id
-                        ? 'border-green-500 text-green-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                    }`}
-                  >
-                    <IconComponent className="h-5 w-5 mr-2" />
-                    {tab.name}
-                  </button>
-                );
-              })}
-            </nav>
-          </div>
-
-          <div className="p-8">
-            {activeTab === 'animals' && (
-              <div>
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-                  <h3 className="text-xl font-medium text-gray-900 mb-4 sm:mb-0">Digital Livestock Profiles</h3>
-                  <button className="bg-green-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-700 transition duration-200 flex items-center">
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add Animal
-                  </button>
-                </div>
-
-                <div className="space-y-4">
-                  {animals.map((animal) => (
-                    <FarmAnimal key={animal.id} animal={animal} getStatusColor={getStatusColor} getStatusIcon={getStatusIcon} />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'overview' && (
-              <div className="text-center py-12 px-8">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">Farm Overview</h3>
-                <p className="text-gray-600">Welcome to your farm management dashboard. Use the tabs above to manage your animals and treatments.</p>
-              </div>
-            )}
-
-            {activeTab === 'treatments' && (
-              <div className="text-center py-12 px-8">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">Treatment Management</h3>
-                <p className="text-gray-600">Track and manage medical treatments for your livestock.</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+				<div className="p-6 sm:p-8">
+					{activeTab === 'overview' && <Overview recentActivity={recentActivity} animals={animals} treatments={treatments} />}
+					{activeTab === 'animals' && <AnimalsTab animals={animals} treatments={treatments} />}
+					{activeTab === 'treatments' && <TreatmentsTab treatments={treatments} animals={animals} />}
+				</div>
+			</div>
+		</div>
+	</div>
+	);
 };
+
+export default FarmerDashboard;

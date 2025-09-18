@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { HiBars3BottomRight } from 'react-icons/hi2';
-import CourseMenu from './CourseMenu';
 import { useRouter } from 'next/navigation';
 
 
@@ -62,7 +61,7 @@ const Nav = ({ openNav, setShowPopup }: NavOpener) => {
               <div className="w-12 h-12 relative">
                 <Image
                   src="/images/logo.png"
-                  alt="ChordsCraft Logo"
+                  alt="AhaarSetu Logo"
                   fill
                   className="object-contain"
                 />
@@ -79,7 +78,6 @@ const Nav = ({ openNav, setShowPopup }: NavOpener) => {
           </div>
           {/* Middle Section */}
           <div className="hidden lg:flex items-center space-x-10 justify-end flex-1 mr-4">
-            <CourseMenu />
 
             {navLinks
               .filter((link) => link.label !== 'Courses')

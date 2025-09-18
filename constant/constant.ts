@@ -6,8 +6,8 @@ export const navLinks = [
     },
     {
         id:2,
-        url:'/dashboard',
-        label:'AMU Checker',
+        url:'/MRL',
+        label:'MRL Checker',
     },
     {
         id:3,

@@ -9,11 +9,11 @@ import FaqsSection from "@/components/Home/FaqsSection/FaqsSection";
 export default function Page() {
   const [query, setQuery] = useState("");
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-300 via-green-200 to-green-100">
+    <div className="min-h-screen bg-gradient-to-b from-green-900 via-green-700 to-green-300">
       <main className="max-w-6xl mx-auto px-4 py-8">
         <div className="mb-6 mt-14">
-          <h1 className="text-2xl font-bold text-gray-900">Training Hub</h1>
-          <p className="text-sm text-gray-600 mt-1">
+          <h1 className="text-2xl font-bold text-green-50">Training Hub</h1>
+          <p className="text-sm text-green-50 mt-1">
             Learn about safe antimicrobial use and best practices for livestock management
           </p>
         </div>
