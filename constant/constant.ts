@@ -1,7 +1,7 @@
 export const navLinks = [
     {
         id:1,
-        url:'/farmer',
+        url:'/scan-qr',
         label:'Scan QR',
     },
     {
