@@ -104,7 +104,7 @@ const Tutorials: React.FC = () => {
           <div className="w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-2xl border-4 border-green-300 relative z-10">
             <iframe
               className="w-full aspect-video"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              src="https://www.youtube.com/embed/6FV96NkS1Fs"
               title="Platform Demo"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
