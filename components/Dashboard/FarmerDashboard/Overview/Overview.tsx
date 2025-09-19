@@ -28,7 +28,7 @@ export default function Overview({ recentActivity, animals, treatments }: {
   const alerts = animals.filter(animal => animal.status === 'warning' || animal.status === 'not-safe').length;
 
   return (
-    <div className="space-y-8">
+    <div className="bg-green-200 space-y-8">
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Recent Activity</h2>
         <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm animate-fade-in">
@@ -36,8 +36,8 @@ export default function Overview({ recentActivity, animals, treatments }: {
             {recentActivity.map((a, idx) => (
               <li
                 key={a.id}
-                className={`px-6 py-4 transition-all duration-200 ease-in-out border-b border-gray-100 last:border-b-0 flex items-center justify-between hover:bg-gray-100 ${
-                  idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                className={`px-6 py-4 transition-all duration-200 ease-in-out border-b border-gray-100 last:border-b-0 flex items-center justify-between hover:bg-green-300 ${
+                  idx % 2 === 0 ? 'bg-green-100' : 'bg-green-100'
                 }`}
               >
                 <div className="flex text-left flex-col">
@@ -52,17 +52,17 @@ export default function Overview({ recentActivity, animals, treatments }: {
       </div>
 
       <div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">Quick Overview</h3>
+        <h3 className="text-2xl bg-green-200 font-bold text-gray-900 mb-4">Quick Overview</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-xl border border-gray-200 bg-white shadow-sm flex flex-col items-center justify-center text-center transition-transform duration-200 ease-in-out hover:scale-105">
+          <div className="p-6 rounded-xl border border-gray-200 bg-green-100 hover:bg-green-300 shadow-sm flex flex-col items-center justify-center text-center transition-transform duration-200 ease-in-out hover:scale-105">
             <p className="text-md text-gray-600 mb-1">Upcoming Checkups</p>
             <p className="text-4xl font-extrabold text-gray-900">{upcomingCheckups}</p>
           </div>
-          <div className="p-6 rounded-xl border border-gray-200 bg-white shadow-sm flex flex-col items-center justify-center text-center transition-transform duration-200 ease-in-out hover:scale-105">
+          <div className="p-6 rounded-xl border border-gray-200 bg-green-100 hover:bg-green-300 shadow-sm flex flex-col items-center justify-center text-center transition-transform duration-200 ease-in-out hover:scale-105">
             <p className="text-md text-gray-600 mb-1">Recent Treatments</p>
             <p className="text-4xl font-extrabold text-gray-900">{recentTreatments}</p>
           </div>
-          <div className="p-6 rounded-xl border border-gray-200 bg-white shadow-sm flex flex-col items-center justify-center text-center transition-transform duration-200 ease-in-out hover:scale-105">
+          <div className="p-6 rounded-xl border border-gray-200 bg-green-100 hover:bg-green-300 shadow-sm flex flex-col items-center justify-center text-center transition-transform duration-200 ease-in-out hover:scale-105">
             <p className="text-md text-gray-600 mb-1">Alerts</p>
             <p className="text-4xl font-extrabold text-gray-900">{alerts}</p>
           </div>

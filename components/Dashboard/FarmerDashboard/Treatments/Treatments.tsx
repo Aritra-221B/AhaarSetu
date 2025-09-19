@@ -18,7 +18,7 @@ export default function Treatments({ treatments, animals }: { treatments: Treatm
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 shadow-lg">
       <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-100">
+        <thead className="bg-green-400">
           <tr>
             <th className="px-6 py-4 text-center text-sm font-bold text-gray-700 uppercase tracking-wider">Date</th>
             <th className="px-6 py-4 text-center text-sm font-bold text-gray-700 uppercase tracking-wider">Animal</th>
@@ -27,9 +27,9 @@ export default function Treatments({ treatments, animals }: { treatments: Treatm
             <th className="px-6 py-4 text-center text-sm font-bold text-gray-700 uppercase tracking-wider">Notes</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200 animate-fade-in">
+        <tbody className="bg-green-100 divide-y divide-green-200 animate-fade-in">
           {treatments.map((t) => (
-            <tr key={t.id} className="transition-all duration-200 ease-in-out hover:bg-gray-50">
+            <tr key={t.id} className="transition-all duration-200 ease-in-out hover:bg-green-50">
               <td className="px-6 py-4 whitespace-nowrap text-md font-medium text-gray-900">{t.date}</td>
               <td className="px-6 py-4 whitespace-nowrap text-md text-gray-700">{animalNameById.get(t.animalId) ?? t.animalId}</td>
               <td className="px-6 py-4 whitespace-nowrap text-md text-gray-700">{t.medicine}</td>

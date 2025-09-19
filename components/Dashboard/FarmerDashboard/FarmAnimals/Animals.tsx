@@ -55,7 +55,7 @@ export default function Animals({ animals, treatments }: { animals: Animal[]; tr
   }
 
   return (
-    <div className="rounded-xl border border-gray-200 overflow-hidden shadow-lg">
+    <div className="rounded-xl border border-gray-200 bg-green-300 overflow-hidden shadow-lg">
       {showQrCodeModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg relative">
@@ -69,19 +69,19 @@ export default function Animals({ animals, treatments }: { animals: Animal[]; tr
           </div>
         </div>
       )}
-      <div className="flex items-center justify-between bg-gray-100 px-6 py-4">
-        <p className="text-lg font-bold text-gray-800">Your Animals</p>
-        <button onClick={() => setShowAdd(true)} className="inline-flex items-center rounded-lg bg-green-700 px-4 py-2 text-md font-medium text-white shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
+      <div className="flex items-center justify-between bg-green-700 px-6 py-4">
+        <p className="text-lg font-bold text-green-50">Your Animals</p>
+        <button onClick={() => setShowAdd(true)} className="inline-flex items-center rounded-lg bg-green-100 px-4 py-2 text-md font-bold text-green-500 shadow-sm hover:bg-green-400 hover:text-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
           + Add Animal
         </button>
       </div>
 
       <div className="p-6 space-y-6">
         {animals.map((a) => (
-          <div key={a.id} className="bg-white border border-gray-200 rounded-xl p-6 md:p-7 shadow-md transition-all duration-200 ease-in-out hover:shadow-lg hover:scale-[1.01]">
+          <div key={a.id} className="bg-green-100 border border-gray-200 rounded-xl p-6 md:p-7 shadow-md transition-all duration-200 ease-in-out hover:shadow-lg hover:scale-[1.01]">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-600 text-base font-semibold">{a.type.slice(0,1)}</div>
+                <div className="h-12 w-12 rounded-full bg-green-700 border border-green-200 flex items-center justify-center text-green-100 text-base font-semibold">{a.type.slice(0,1)}</div>
                 <div>
                   <p className="text-lg md:text-xl font-bold text-gray-900">{a.name}</p>
                   <p className="text-sm text-gray-500">ID : {a.id}</p>
@@ -102,7 +102,7 @@ export default function Animals({ animals, treatments }: { animals: Animal[]; tr
                     setSelectedAnimalId(a.id);
                     setShowQrCodeModal(null);
                   }}
-                  className="rounded-lg border border-blue-300 text-blue-700 bg-blue-50 hover:bg-blue-100 text-sm md:text-base px-4 py-2 transition-colors"
+                  className="rounded-lg border border-green-300 text-green-700 bg-green-50 hover:bg-green-200 text-sm md:text-base px-4 py-2 transition-colors"
                 >
                   View Profile
                 </button>

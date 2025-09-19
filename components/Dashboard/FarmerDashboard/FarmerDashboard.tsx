@@ -103,7 +103,7 @@ export const FarmerDashboard: React.FC = () => {
 			</div>
 
 			<div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-				<div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
+				<div className="bg-green-100 rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
 					<div className="flex items-center">
 						<div className="p-3 bg-blue-100 rounded-full"><Users className="h-7 w-7 text-blue-600" /></div>
 						<div className="ml-4">
@@ -112,16 +112,16 @@ export const FarmerDashboard: React.FC = () => {
 						</div>
 					</div>
 				</div>
-				<div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
+				<div className="bg-green-100 rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
 					<div className="flex items-center">
-						<div className="p-3 bg-green-100 rounded-full"><CheckCircle className="h-7 w-7 text-green-600" /></div>
+						<div className="p-3 bg-orange-100 rounded-full"><CheckCircle className="h-7 w-7 text-orange-600" /></div>
 						<div className="ml-4">
 							<p className="text-md font-medium text-gray-600">Safe</p>
 							<p className="text-3xl font-bold text-gray-900">{stats.safe}</p>
 						</div>
 					</div>
 				</div>
-				<div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
+				<div className="bg-green-100 rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
 					<div className="flex items-center">
 						<div className="p-3 bg-yellow-100 rounded-full"><AlertTriangle className="h-7 w-7 text-yellow-600" /></div>
 						<div className="ml-4">
@@ -130,7 +130,7 @@ export const FarmerDashboard: React.FC = () => {
 						</div>
 					</div>
 				</div>
-				<div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
+				<div className="bg-green-100 rounded-xl shadow-lg border border-gray-200 p-6 flex items-center justify-between transition-transform duration-200 ease-in-out hover:scale-105">
 					<div className="flex items-center">
 						<div className="p-3 bg-red-100 rounded-full"><XCircle className="h-7 w-7 text-red-600" /></div>
 						<div className="ml-4">
@@ -141,7 +141,7 @@ export const FarmerDashboard: React.FC = () => {
 				</div>
 			</div>
 
-			<div className="bg-white rounded-xl shadow-lg border border-gray-200 mb-8">
+			<div className="bg-green-200 rounded-xl shadow-lg border border-gray-200 mb-8">
 				<div className="border-b border-gray-200 px-6 sm:px-8">
 					<nav className="-mb-px flex space-x-8" aria-label="Tabs">
 						{
