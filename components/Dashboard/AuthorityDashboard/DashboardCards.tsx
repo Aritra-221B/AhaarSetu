@@ -10,7 +10,7 @@ export default function DashboardCards() {
     ];
   
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 px-2 sm:px-4 mb-6 sm:mb-8">
         {cards.map((card, i) => (
           <motion.div
             key={i}
@@ -18,14 +18,14 @@ export default function DashboardCards() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: i * 0.1, ease: "easeOut" }}
             whileHover={{ scale: 1.03, boxShadow: "0 10px 20px rgba(0,0,0,0.1)" }}
-            className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex items-center gap-4 cursor-pointer"
+            className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-6 flex items-center gap-3 sm:gap-4 cursor-pointer"
           >
-            <div className={`p-3 rounded-full ${card.bgColor}`}>
-              <card.icon className={`h-7 w-7 ${card.color}`} />
+            <div className={`p-2 sm:p-3 rounded-full ${card.bgColor}`}>
+              <card.icon className={`h-6 w-6 sm:h-7 sm:w-7 ${card.color}`} />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-600">{card.title}</p>
-              <p className="text-3xl font-bold text-gray-900">{card.value}</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-600">{card.title}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{card.value}</p>
             </div>
           </motion.div>
         ))}
