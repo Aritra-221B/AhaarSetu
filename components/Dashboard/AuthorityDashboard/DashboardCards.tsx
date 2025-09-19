@@ -18,7 +18,7 @@ export default function DashboardCards() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: i * 0.1, ease: "easeOut" }}
             whileHover={{ scale: 1.03, boxShadow: "0 10px 20px rgba(0,0,0,0.1)" }}
-            className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 sm:p-6 flex items-center gap-3 sm:gap-4 cursor-pointer"
+            className="bg-green-100 rounded-xl shadow-lg border border-gray-200 p-4 sm:p-6 flex items-center gap-3 sm:gap-4 cursor-pointer"
           >
             <div className={`p-2 sm:p-3 rounded-full ${card.bgColor}`}>
               <card.icon className={`h-6 w-6 sm:h-7 sm:w-7 ${card.color}`} />
