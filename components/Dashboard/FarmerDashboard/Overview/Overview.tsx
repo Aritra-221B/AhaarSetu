@@ -28,7 +28,7 @@ export default function Overview({ recentActivity, animals, treatments }: {
   const alerts = animals.filter(animal => animal.status === 'warning' || animal.status === 'not-safe').length;
 
   return (
-    <div className="bg-green-200 space-y-8">
+    <div className="bg-green-200 px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 space-y-8">
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Recent Activity</h2>
         <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm animate-fade-in">

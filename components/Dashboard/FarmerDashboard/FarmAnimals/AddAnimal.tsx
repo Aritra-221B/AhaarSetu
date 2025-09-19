@@ -31,7 +31,7 @@ const productTypes = [
   { name: "Egg", color: "bg-orange-100 text-orange-700 border-orange-300" },
 ];
 
-export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactElement {
+const AddAnimal: React.FC<AddAnimalProps> = ({ onClose }: AddAnimalProps): React.ReactElement => {
   const [data, setData] = useState<FormData>({
     drugName: "",
     species: "",
@@ -399,11 +399,11 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="rounded-xl overflow-hidden border border-gray-200 bg-white shadow-lg"
+      className="rounded-xl overflow-hidden border border-gray-200 bg-white shadow-lg sm:max-w-4xl sm:mx-auto"
     >
       {/* Sticky Header */}
       <div className="sticky top-0 z-10 bg-gradient-to-r from-green-700 to-green-600">
-        <div className="px-6 md:px-8 py-3 flex items-center justify-between text-white shadow-sm">
+        <div className="px-4 md:px-6 py-3 flex items-center justify-between text-white shadow-sm">
           <div className="flex items-center gap-3">
             <span className="h-8 w-8 flex items-center justify-center rounded-lg bg-white text-green-600 font-bold text-base shadow-sm">
               AS
@@ -426,34 +426,34 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
       </div>
 
       {/* Main Content */}
-      <div className="p-6 md:p-8 bg-gradient-to-r from-green-700 to-green-600">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
+      <div className="p-4 md:p-6 bg-gradient-to-r from-green-700 to-green-600">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-2">
           {/* Form column */}
           <div className="lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
-              className="bg-green-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200"
+              className="bg-green-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-200"
             >
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              <h3 className="text-md font-semibold text-gray-900 mb-3">
                 Animal & Treatment Info
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {/* Drug Name */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Drug Name *
                   </label>
                   <div className="relative">
-                    <Pill className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Pill className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-gray-400" />
                     <input
                       name="drugName"
                       value={data.drugName}
                       onChange={handleChange}
                       onFocus={() => setShowSuggestions(true)}
                       onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                      className="w-full pl-10 pr-3 py-2 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 transition-all duration-200 shadow-sm placeholder-gray-400"
+                      className="w-full pl-8 pr-2 py-1.5 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 transition-all duration-200 shadow-sm placeholder-gray-400 text-sm"
                       placeholder="Enter drug name"
                       list="drug-suggestions"
                     />
@@ -524,28 +524,28 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
 
                 {/* Animal Name */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Animal Name
                   </label>
                   <input
                     name="name"
                     value={data.name}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 transition-all duration-200 shadow-sm placeholder-gray-400"
+                    className="w-full px-2 py-1.5 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 text-sm"
                     placeholder="Enter animal name (optional)"
                   />
                 </div>
 
                 {/* Species */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Species Name * {data.drugName && availableSpecies.length < speciesOptions.length && (
-                      <span className="text-xs text-blue-600">
+                      <span className="text-xxs text-blue-600">
                         (Showing {availableSpecies.length} species available for {data.drugName})
                       </span>
                     )}
                   </label>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1">
                     {availableSpecies.map((s) => (
                       <motion.button
                         key={s}
@@ -553,7 +553,7 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                         whileTap={{ scale: 0.95 }}
                         whileHover={{ scale: 1.05 }}
                         onClick={() => setData((p) => ({ ...p, species: s }))}
-                        className={`px-3 py-1.5 rounded-full text-xs border transition-all duration-200 shadow-sm ${
+                        className={`px-2 py-1 rounded-full text-xxs border transition-all duration-200 shadow-sm ${
                           data.species === s
                             ? "bg-green-200 text-green-800 border-green-500 shadow-sm"
                             : "bg-white text-gray-700 border-gray-300 hover:border-green-500 hover:text-green-700"
@@ -577,33 +577,33 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
 
                 {/* Breed */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Breed
                   </label>
                   <input
                     name="breed"
                     value={data.breed}
                     onChange={handleChange}
-                    className="w-full rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500"
+                    className="w-full px-2 py-1.5 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 text-sm"
                     placeholder="Enter breed"
                   />
                 </div>
 
                 {/* Weight */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Weight
                   </label>
                   <div className="relative">
-                    <Weight className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                    <Weight className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-gray-400" />
                     <input
                       name="weight"
                       value={data.weight}
                       onChange={handleChange}
-                      className="w-full pl-9 pr-14 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500"
+                      className="w-full pl-8 pr-12 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 text-sm"
                       placeholder="380"
                     />
-                    <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 text-sm">
+                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-500 text-xxs">
                       kg
                     </span>
                   </div>
@@ -611,56 +611,56 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
 
                 {/* Age */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Age
                   </label>
                   <input
                     name="age"
                     value={data.age}
                     onChange={handleChange}
-                    className="w-full rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500"
+                    className="w-full px-2 py-1.5 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 text-sm"
                     placeholder="2 years"
                   />
                 </div>
 
                 {/* Dosage */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Dosage
                   </label>
                   <div className="relative">
-                    <Syringe className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                    <Syringe className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-gray-400" />
                     <input
                       name="dosage"
                       value={data.dosage}
                       onChange={handleChange}
-                      className="w-full pl-9 pr-14 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500"
+                      className="w-full pl-8 pr-12 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 text-sm"
                       placeholder="10"
                     />
-                    <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 text-sm">
+                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-500 text-xxs">
                       ml
                     </span>
                   </div>
                 </div>
 
                 {/* Product Type */}
-                <div className="md:col-span-2 justify-center">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                <div className="md:col-span-2 flex flex-col items-center">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Product Type * {data.drugName && availableProducts.length < productTypes.length && (
-                      <span className="text-xs text-blue-600">
+                      <span className="text-xxs text-blue-600">
                         (Showing {availableProducts.length} products available for {data.drugName})
                       </span>
                     )}
                   </label>
-                  
+
                   {/* Debug information - remove this in production */}
                   {process.env.NODE_ENV === 'development' && (
-                    <div className="text-xs text-gray-500 mb-2">
+                    <div className="text-xxs text-gray-500 mb-2">
                       Available products count: {availableProducts.length}
                     </div>
                   )}
-                  
-                  <div className="flex flex-wrap justify-center gap-2">
+
+                  <div className="flex flex-wrap justify-center gap-1">
                     {availableProducts.length > 0 ? (
                       availableProducts.map((p) => (
                         <motion.button
@@ -668,7 +668,7 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                           type="button"
                           whileTap={{ scale: 0.95 }}
                           onClick={() => setData((d) => ({ ...d, productType: p.name }))}
-                          className={`px-3 py-1.5 rounded-full text-xs border transition-colors ${
+                          className={`px-2 py-1 rounded-full text-xxs border transition-colors ${
                             data.productType === p.name
                               ? `${p.color} border`
                               : "bg-white text-gray-700 border-gray-300 hover:border-emerald-500"
@@ -678,19 +678,19 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                         </motion.button>
                       ))
                     ) : (
-                      <div className="text-xs text-red-600">
+                      <div className="text-xxs text-red-600">
                         No product types available. This might be a filtering issue.
                       </div>
                     )}
                   </div>
-                  
+
                   {data.drugName && availableProducts.length === 0 && (
-                    <p className="text-xs text-red-600 mt-1">
+                    <p className="text-xxs text-red-600 mt-1">
                       No product types found for {data.drugName}. Please check the drug name.
                     </p>
                   )}
                   {!data.drugName && (
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xxs text-gray-500 mt-1">
                       Enter a drug name first to see available product types
                     </p>
                   )}
@@ -698,31 +698,31 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
 
                 {/* Last Checkup Date */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Last Treatment Date *
                   </label>
                   <div className="relative">
-                    <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                    <Calendar className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-gray-400" />
                     <input
                       type="date"
                       name="lastCheckup"
                       value={data.lastCheckup}
                       onChange={handleChange}
                       max={new Date().toISOString().split('T')[0]}
-                      className="w-full pl-9 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500"
+                      className="w-full pl-8 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 text-sm"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 flex justify-center">
+              <div className="mt-4 flex flex-col sm:flex-row justify-center gap-2">
                 <motion.button
                   whileHover={{ scale: 1.03, boxShadow: "0 4px 15px -3px rgba(34,197,94,0.3)" }}
                   whileTap={{ scale: 0.97 }}
                   type="button"
                   onClick={handleCheckCompliance}
                   disabled={isCheckingCompliance || !data.drugName || !data.species || !data.productType || !data.lastCheckup}
-                  className="inline-flex items-center rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="inline-flex items-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-medium text-white shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
                   {isCheckingCompliance ? (
                     <>
@@ -733,7 +733,7 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                     'Check Compliance'
                   )}
                 </motion.button>
-                
+
                 {complianceResult && (
                   <motion.button
                     whileHover={{ scale: 1.03, boxShadow: "0 4px 15px -3px rgba(34,197,94,0.3)" }}
@@ -741,11 +741,11 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                     type="button"
                     onClick={handleSaveAnimal}
                     disabled={isSaving || !complianceResult.isCompliant}
-                    className={`inline-flex items-center ml-3 rounded-md px-4 py-2 text-sm font-medium text-white shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 ${
+                    className={`inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium text-white shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 ${
                       complianceResult.isCompliant
                         ? 'bg-green-600 hover:bg-green-700'
                         : 'bg-gray-400 cursor-not-allowed'
-                    } disabled:bg-gray-400 disabled:cursor-not-allowed`}
+                    } disabled:bg-gray-400 disabled:cursor-not-allowed ${complianceResult && 'mt-2 sm:mt-0 sm:ml-3'}`}
                   >
                     {isSaving ? (
                       <>
@@ -767,10 +767,10 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
-              className="bg-green-100 rounded-xl border border-gray-200 p-5 shadow-md"
+              className="bg-green-100 rounded-xl border border-gray-200 p-4 shadow-md"
             >
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Preview</h3>
-              <div className="space-y-3 text-sm">
+              <h3 className="text-md font-semibold text-gray-900 mb-3">Preview</h3>
+              <div className="space-y-2 text-sm">
                 {[
                   ["Drug", data.drugName],
                   ["Species", data.species],
@@ -786,10 +786,10 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.2, delay: 0.05 * (["Drug", "Species", "Breed", "Weight", "Age", "Dosage", "Product", "Last Checkup"].indexOf(label as string)), ease: "easeOut" }}
-                    className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0"
+                    className="flex items-center justify-between py-1.5 border-b border-gray-100 last:border-b-0"
                   >
-                    <span className="text-gray-600">{label}</span>
-                    <span className="font-medium text-gray-900">{value || "-"}</span>
+                    <span className="text-gray-600 text-xs">{label}</span>
+                    <span className="font-medium text-gray-900 text-xs">{value || "-"}</span>
                   </motion.div>
                 ))}
               </div>
@@ -801,22 +801,22 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
-                className={`rounded-xl border p-5 shadow-md mt-4 ${getComplianceColor()}`}
+                className={`rounded-xl border p-4 shadow-md mt-3 ${getComplianceColor()}`}
               >
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-2">
                   {getComplianceIcon()}
-                  <h3 className="text-lg font-semibold text-gray-900">Compliance Check</h3>
+                  <h3 className="text-md font-semibold text-gray-900">Compliance Check</h3>
                 </div>
-                
-                <div className="space-y-3 text-sm">
+
+                <div className="space-y-2 text-sm">
                   <div className="bg-white rounded-lg p-3 border">
-                    <p className="text-gray-700">{complianceResult.message}</p>
+                    <p className="text-gray-700 text-sm">{complianceResult.message}</p>
                   </div>
-                  
+
                   {/* Risk Message */}
                   {complianceResult.riskMessage && (
                     <div className="bg-white rounded-lg p-3 border border-orange-200">
-                      <p className="text-orange-700">{complianceResult.riskMessage}</p>
+                      <p className="text-orange-700 text-sm">{complianceResult.riskMessage}</p>
                     </div>
                   )}
 
@@ -827,18 +827,18 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                       <button
                         type="button"
                         onClick={() => setShowRuleDetails(!showRuleDetails)}
-                        className="text-blue-600 hover:text-blue-800 text-sm"
+                        className="text-blue-600 hover:text-blue-800 text-xs"
                       >
                         {showRuleDetails ? 'Hide Details' : 'Show Details'}
                       </button>
                     </div>
-                    
+
                     {showRuleDetails && (
-                      <div className="mt-3 space-y-2 text-sm">
+                      <div className="mt-2 space-y-1 text-xs">
                         <div className="grid grid-cols-2 gap-2">
                           <div>
                             <span className="text-blue-600">Drug Found:</span>
-                            <span className={`ml-2 font-medium ${
+                            <span className={`ml-1 font-medium ${
                               complianceResult.ruleValidation.drugFound ? 'text-green-600' : 'text-red-600'
                             }`}>
                               {complianceResult.ruleValidation.drugFound ? '✅ Yes' : '❌ No'}
@@ -846,7 +846,7 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                           </div>
                           <div>
                             <span className="text-blue-600">Species Supported:</span>
-                            <span className={`ml-2 font-medium ${
+                            <span className={`ml-1 font-medium ${
                               complianceResult.ruleValidation.speciesSupported ? 'text-green-600' : 'text-red-600'
                             }`}>
                               {complianceResult.ruleValidation.speciesSupported ? '✅ Yes' : '❌ No'}
@@ -854,7 +854,7 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                           </div>
                           <div>
                             <span className="text-blue-600">Product Matched:</span>
-                            <span className={`ml-2 font-medium ${
+                            <span className={`ml-1 font-medium ${
                               complianceResult.ruleValidation.productMatched ? 'text-green-600' : 'text-red-600'
                             }`}>
                               {complianceResult.ruleValidation.productMatched ? '✅ Yes' : '❌ No'}
@@ -862,18 +862,18 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                           </div>
                           <div>
                             <span className="text-blue-600">Exact Rule:</span>
-                            <span className="ml-2 font-medium text-gray-800">
+                            <span className="ml-1 font-medium text-gray-800">
                               {complianceResult.ruleValidation.exactRuleUsed || 'None'}
                             </span>
                           </div>
                         </div>
-                        
+
                         {complianceResult.ruleValidation.availableRulesForDrug.length > 0 && (
                           <div>
                             <span className="text-blue-600">Available Rules for {data.drugName}:</span>
                             <div className="mt-1 flex flex-wrap gap-1">
                               {complianceResult.ruleValidation.availableRulesForDrug.map(rule => (
-                                <span key={rule} className={`px-2 py-1 text-xs rounded ${
+                                <span key={rule} className={`px-1.5 py-0.5 text-xxs rounded ${
                                   rule === complianceResult.ruleValidation.exactRuleUsed
                                     ? 'bg-green-100 text-green-800 border border-green-300'
                                     : 'bg-gray-100 text-gray-700'
@@ -884,11 +884,11 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                             </div>
                           </div>
                         )}
-                        
+
                         {complianceResult.calculationDetails.complianceLogic && (
                           <div className="pt-2 border-t border-blue-200">
                             <span className="text-blue-600">Calculation Logic:</span>
-                            <p className="mt-1 text-gray-700 text-xs">
+                            <p className="mt-1 text-gray-700 text-xxs">
                               {complianceResult.calculationDetails.complianceLogic}
                             </p>
                           </div>
@@ -896,60 +896,60 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                       </div>
                     )}
                   </div>
-                  
+
                   {complianceResult.withdrawalPeriod !== null && (
                     <div className="space-y-2">
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Withdrawal Period:</span>
-                        <span className="font-medium">{complianceResult.withdrawalPeriod} days</span>
+                        <span className="text-gray-500 text-sm">Withdrawal Period:</span>
+                        <span className="font-medium text-sm">{complianceResult.withdrawalPeriod} days</span>
                       </div>
-                      
+
                       {/* Risk Period Information */}
                       {complianceResult.riskPeriod !== null && complianceResult.riskPeriod > 0 && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">High Risk Period:</span>
-                          <span className="font-medium text-orange-600">{complianceResult.riskPeriod} days</span>
+                          <span className="text-gray-500 text-sm">High Risk Period:</span>
+                          <span className="font-medium text-orange-600 text-sm">{complianceResult.riskPeriod} days</span>
                         </div>
                       )}
-                      
+
                       {/* Days Until Low Risk */}
                       {complianceResult.daysUntilLowRisk > 0 && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Days Until Low Risk:</span>
-                          <span className="font-medium text-orange-600">{complianceResult.daysUntilLowRisk} days</span>
+                          <span className="text-gray-500 text-sm">Days Until Low Risk:</span>
+                          <span className="font-medium text-orange-600 text-sm">{complianceResult.daysUntilLowRisk} days</span>
                         </div>
                       )}
-                      
+
                       {/* Days Until Safe */}
                       {complianceResult.daysUntilSafe > 0 && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Days Until Safe:</span>
-                          <span className="font-medium text-red-600">{complianceResult.daysUntilSafe} days</span>
+                          <span className="text-gray-500 text-sm">Days Until Safe:</span>
+                          <span className="font-medium text-red-600 text-sm">{complianceResult.daysUntilSafe} days</span>
                         </div>
                       )}
-                      
+
                       {/* Risk End Date */}
                       {complianceResult.riskEndDate && complianceResult.daysUntilLowRisk > 0 && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Risk End Date:</span>
-                          <span className="font-medium text-orange-600">
+                          <span className="text-gray-500 text-sm">Risk End Date:</span>
+                          <span className="font-medium text-orange-600 text-sm">
                             {complianceResult.riskEndDate.toLocaleDateString()}
                           </span>
                         </div>
                       )}
-                      
+
                       {complianceResult.recommendedDate && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Safe Date:</span>
-                          <span className="font-medium">
+                          <span className="text-gray-500 text-sm">Safe Date:</span>
+                          <span className="font-medium text-sm">
                             {complianceResult.recommendedDate.toLocaleDateString()}
                           </span>
                         </div>
                       )}
-                      
+
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Status:</span>
-                        <span className={`font-medium capitalize ${
+                        <span className="text-gray-500 text-sm">Status:</span>
+                        <span className={`font-medium capitalize text-sm ${
                           complianceResult.status === 'safe' ? 'text-green-600' :
                           complianceResult.status === 'warning' ? 'text-yellow-600' :
                           complianceResult.status === 'high-risk' ? 'text-red-700' :
@@ -960,15 +960,15 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
                       </div>
                     </div>
                   )}
-                  
+
                   {/* Risk Level Indicator */}
                   {complianceResult.status === 'high-risk' && (
                     <div className="mt-3 p-3 bg-red-100 border border-red-300 rounded-lg">
                       <div className="flex items-center gap-2">
-                        <Shield className="h-4 w-4 text-red-600" />
-                        <span className="text-sm font-medium text-red-800">HIGH RISK PERIOD</span>
+                        <Shield className="h-3 w-3 text-red-600" />
+                        <span className="text-xs font-medium text-red-800">HIGH RISK PERIOD</span>
                       </div>
-                      <p className="text-xs text-red-700 mt-1">
+                      <p className="text-xxs text-red-700 mt-1">
                         Animal requires extra monitoring during this period. Increased risk of adverse effects.
                       </p>
                     </div>
@@ -982,3 +982,5 @@ export default function AddAnimal({ onClose }: AddAnimalProps): React.ReactEleme
     </motion.div>
   );
 }
+
+export default AddAnimal;

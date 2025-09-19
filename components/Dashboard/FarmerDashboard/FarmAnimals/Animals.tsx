@@ -57,8 +57,8 @@ export default function Animals({ animals, treatments }: { animals: Animal[]; tr
   return (
     <div className="rounded-xl border border-gray-200 bg-green-300 overflow-hidden shadow-lg">
       {showQrCodeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg relative">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white p-6 rounded-lg shadow-lg relative max-w-sm w-full">
             <button
               onClick={() => setShowQrCodeModal(null)}
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl"
@@ -71,14 +71,14 @@ export default function Animals({ animals, treatments }: { animals: Animal[]; tr
       )}
       <div className="flex items-center justify-between bg-green-700 px-6 py-4">
         <p className="text-lg font-bold text-green-50">Your Animals</p>
-        <button onClick={() => setShowAdd(true)} className="inline-flex items-center rounded-lg bg-green-100 px-4 py-2 text-md font-bold text-green-500 shadow-sm hover:bg-green-400 hover:text-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
+        <button onClick={() => setShowAdd(true)} className="inline-flex items-center rounded-lg bg-green-100 px-3 py-1.5 text-sm font-bold text-green-500 shadow-sm hover:bg-green-400 hover:text-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
           + Add Animal
         </button>
       </div>
 
-      <div className="p-6 space-y-6">
+      <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
         {animals.map((a) => (
-          <div key={a.id} className="bg-green-100 border border-gray-200 rounded-xl p-6 md:p-7 shadow-md transition-all duration-200 ease-in-out hover:shadow-lg hover:scale-[1.01]">
+          <div key={a.id} className="bg-green-100 border border-gray-200 rounded-xl p-4 sm:p-6 shadow-md transition-all duration-200 ease-in-out hover:shadow-lg hover:scale-[1.01]">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-green-700 border border-green-200 flex items-center justify-center text-green-100 text-base font-semibold">{a.type.slice(0,1)}</div>
@@ -90,11 +90,11 @@ export default function Animals({ animals, treatments }: { animals: Animal[]; tr
 
               <div className="flex items-center gap-4">
                 {getBadge(a.status)}
-                <button onClick={() => setShowQrCodeModal(a.id)} className="ml-4">
+                <button onClick={() => setShowQrCodeModal(a.id)} className="ml-2 sm:ml-4">
                   <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=48x48&data=${a.id}`}
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=40x40&data=${a.id}`}
                     alt="QR Code"
-                    className="w-12 h-12 cursor-pointer"
+                    className="w-10 h-10 sm:w-12 sm:h-12 cursor-pointer"
                   />
                 </button>
                 <button
@@ -102,14 +102,14 @@ export default function Animals({ animals, treatments }: { animals: Animal[]; tr
                     setSelectedAnimalId(a.id);
                     setShowQrCodeModal(null);
                   }}
-                  className="rounded-lg border border-green-300 text-green-700 bg-green-50 hover:bg-green-200 text-sm md:text-base px-4 py-2 transition-colors"
+                  className="rounded-lg border border-green-300 text-green-700 bg-green-50 hover:bg-green-200 text-xs sm:text-sm px-3 py-1.5 transition-colors"
                 >
                   View Profile
                 </button>
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+            <div className="mt-4 sm:mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs sm:text-sm">
               <div className="flex flex-col">
                 <p className="text-gray-500">Age</p>
                 <p className="font-semibold text-gray-900">{a.age}</p>

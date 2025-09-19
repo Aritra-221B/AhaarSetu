@@ -53,30 +53,30 @@ const AnimalDashboard: React.FC<AnimalDashboardProps> = ({ animal, onClose, trea
   const animalTreatmentHistory = treatments.filter(t => t.animalId === animal.id);
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="p-4 sm:p-6 md:p-8 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-8 pb-4 border-b border-gray-200">
         <div>
-          <h1 className="text-4xl font-extrabold text-gray-900">{animalData.name}</h1>
-          <p className="text-lg text-gray-600 mt-1">ID: {animalData.id}</p>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900">{animalData.name}</h1>
+          <p className="text-base sm:text-lg text-gray-600 mt-1">ID: {animalData.id}</p>
         </div>
         {/* QR Code and Back button */}
-        <div className="flex items-center gap-4">
-          <img 
+        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-4 sm:mt-0">
+          <img
             src={`https://api.qrserver.com/v1/create-qr-code/?size=96x96&data=${animal.id}`}
             alt="QR Code"
-            className="w-24 h-24 cursor-pointer rounded-lg shadow-md transition-transform duration-200 ease-in-out hover:scale-105"
+            className="w-20 h-20 sm:w-24 sm:h-24 cursor-pointer rounded-lg shadow-md transition-transform duration-200 ease-in-out hover:scale-105"
           />
-          <button onClick={onClose} className="rounded-lg bg-blue-600 px-5 py-2.5 text-lg font-medium text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+          <button onClick={onClose} className="rounded-lg bg-blue-600 px-4 py-2 sm:px-5 sm:py-2.5 text-base sm:text-lg font-medium text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
             Back to Animals
           </button>
         </div>
       </div>
 
       {/* Basic Information Card */}
-      <div className="bg-white p-8 rounded-xl shadow-lg mb-8 border border-gray-200 animate-fade-in">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Basic Information</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg mb-6 sm:mb-8 border border-gray-200 animate-fade-in">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Basic Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           <div className="flex flex-col">
             <p className="text-gray-500 text-md">Animal Type</p>
             <p className="font-semibold text-gray-900 text-lg mt-1">{animalData.animalType}</p>

@@ -16,7 +16,7 @@ type Animal = { id: string; name: string };
 export default function Treatments({ treatments, animals }: { treatments: TreatmentLog[]; animals: Animal[] }): React.ReactElement {
   const animalNameById = new Map(animals.map((a) => [a.id, a.name] as const));
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 shadow-lg">
+    <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-lg">
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-green-400">
           <tr>
