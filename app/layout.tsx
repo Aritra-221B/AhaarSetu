@@ -11,11 +11,6 @@ const font = Poppins({
   subsets:['latin']
 })
 
-export const metadata: Metadata = {
-  title: "AhaarSetu - Digital Medical Passport",
-  description: "Connecting Farms, Medicines & Market Digitally",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
