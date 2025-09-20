@@ -1,6 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import AntimicrobialCost from "./Antimicrobialcost";
+import MRLindicator from "./MRLindicator";
+import TreatmentWiseUsage from "./TreatmentwiseUsage";
+import WeeklyDosage from "./WeeklyDosage";
+import UsageByStateMap from "./UsageByStatemap";
 
 export default function MultiDashboardTabs() {
   const [activeTab, setActiveTab] = useState<
@@ -37,13 +42,11 @@ export default function MultiDashboardTabs() {
           {/* Dashboard 1 */}
           {activeTab === "dashboard1" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              <div className="bg-green-100 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
+              <div className="bg-green-50 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
                 <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">
                   Antimicrobial Usage Intensity by State
                 </h2>
-                <div className="flex items-center justify-center h-[250px] sm:h-[300px] text-gray-400">
-                  [India Map Chart Placeholder]
-                </div>
+                <UsageByStateMap />
               </div>
             </div>
           )}
@@ -51,19 +54,15 @@ export default function MultiDashboardTabs() {
           {/* Dashboard 2 */}
           {activeTab === "dashboard2" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              <div className="bg-green-100 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
+              <div className="bg-green-50 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
                 <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">
                   Antimicrobial Usage, Treatment-Wise
                 </h2>
-                <div className="flex items-center justify-center h-[250px] sm:h-[300px] text-gray-400">
-                  [Pie/Donut Chart Placeholder]
-                </div>
+                <TreatmentWiseUsage />
               </div>
-              <div className="bg-green-100 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
+              <div className="bg-green-50 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
                 <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">MRL Compliance Indicator</h2>
-                <div className="flex items-center justify-center h-[250px] sm:h-[300px] text-gray-400">
-                  [Gauge Chart Placeholder]
-                </div>
+                <MRLindicator />
               </div>
             </div>
           )}
@@ -71,19 +70,15 @@ export default function MultiDashboardTabs() {
           {/* Dashboard 3 */}
           {activeTab === "dashboard3" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              <div className="bg-green-100 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
+              <div className="bg-green-50 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
                 <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">
                   Weekly Antimicrobial Dosage and Frequency
                 </h2>
-                <div className="flex items-center justify-center h-[250px] sm:h-[300px] text-gray-400">
-                  [Line Chart Placeholder]
-                </div>
+                <WeeklyDosage />
               </div>
-              <div className="bg-green-100 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
-                <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Antimicrobial Cost vs Doses</h2>
-                <div className="flex items-center justify-center h-[250px] sm:h-[300px] text-gray-400">
-                  [Bar + Line Chart Placeholder]
-                </div>
+              <div className="bg-green-50 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
+                <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Antimicrobial Cost</h2>
+                <AntimicrobialCost />
               </div>
             </div>
           )}

@@ -1,19 +1,35 @@
 'use client';
 
 import React from "react";
+import { RadialBarChart, RadialBar, Legend, ResponsiveContainer, Text } from "recharts";
+
+const data = [
+  { name: "Compliance Score", value: 78, fill: "#4CAF50" },
+];
 
 const MRLIndicator: React.FC = () => {
   return (
-    <div className="bg-white shadow rounded-2xl p-4 flex flex-col items-center">
-      <h2 className="text-lg font-semibold mb-2">MRL Compliance Indicator</h2>
-      <div className="flex flex-col items-center justify-center">
-        {/* Placeholder Gauge */}
-        <div className="w-40 h-40 rounded-full border-[10px] border-green-500 flex items-center justify-center">
-          <span className="text-2xl font-bold text-gray-800">78%</span>
-        </div>
-        <p className="mt-2 text-gray-600 text-sm">Compliance Score</p>
-      </div>
-    </div>
+    <ResponsiveContainer width="100%" height="100%">
+      <RadialBarChart
+        cx="50%"
+        cy="50%"
+        innerRadius="70%"
+        outerRadius="90%"
+        barSize={20}
+        data={data}
+        startAngle={180}
+        endAngle={0}
+      >
+        <RadialBar dataKey="value" fill="#4CAF50" />
+        <Text x={300} y={200} textAnchor="middle" dominantBaseline="middle" className="text-2xl font-bold" fill="#4CAF50">{`${data[0].value}%`}</Text>
+        <Legend
+          iconSize={10}
+          layout="vertical"
+          verticalAlign="middle"
+          wrapperStyle={{ top: 0, left: 350, lineHeight: "24px" }}
+        />
+      </RadialBarChart>
+    </ResponsiveContainer>
   );
 };
 

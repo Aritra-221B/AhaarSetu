@@ -1,15 +1,33 @@
 'use client';
 
 import React from "react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+
+const usageData = [
+  { state: "Uttar Pradesh", value: 75 },
+  { state: "Maharashtra", value: 90 },
+];
 
 const UsageByStateMap: React.FC = () => {
   return (
-    <div className="bg-white shadow rounded-2xl p-4">
-      <h2 className="text-lg font-semibold mb-2">Antimicrobial Usage Intensity by State</h2>
-      <div className="h-72 flex items-center justify-center text-gray-500">
-        [India Map Chart Placeholder]
-      </div>
-    </div>
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart
+        data={usageData}
+        margin={{
+          top: 20,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="state" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="value" fill="#8884d8" name="Usage Intensity" />
+      </BarChart>
+    </ResponsiveContainer>
   );
 };
 

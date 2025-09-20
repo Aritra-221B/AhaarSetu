@@ -13,17 +13,14 @@ const data = [
 
 const WeeklyDosage: React.FC = () => {
   return (
-    <div className="bg-white shadow rounded-2xl p-4">
-      <h2 className="text-lg font-semibold mb-2">Weekly Antimicrobial Dosage and Frequency</h2>
-      <LineChart width={350} height={250} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="week" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="doses" stroke="#8884d8" strokeWidth={2} />
-      </LineChart>
-    </div>
+    <LineChart width={350} height={250} data={data}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="week" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Line type="monotone" dataKey="doses" stroke="#8884d8" strokeWidth={2} />
+    </LineChart>
   );
 };
 
