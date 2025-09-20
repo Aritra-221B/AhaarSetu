@@ -5,6 +5,7 @@ import { Users, Calendar, FileText, AlertCircle } from 'lucide-react';
 import NewTreatment from './NewTreatment';
 import VetChart from './VetChart';
 import { motion } from 'framer-motion';
+import VetAlerts from './VetAlerts';
 
 export const VetDashboard: React.FC = () => {
   const cards = [
@@ -88,6 +89,11 @@ export const VetDashboard: React.FC = () => {
               </p>
             </motion.div>
           </div>
+        </div>
+
+        {/* New Treatment Form */}
+        <div className="mb-8">
+          <VetAlerts />
         </div>
 
         {/* New Treatment Form */}
