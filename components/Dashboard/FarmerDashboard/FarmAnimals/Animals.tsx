@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import AddAnimal from './AddAnimal';
 import AnimalDashboard from './AnimalDashboard';
 import QRCodeAnimal from './QRCodeAnimal/QRCodeAnimal';
+import SearchAnimal from './SearchAnimal';
 
 type Animal = {
   id: string;
@@ -16,6 +17,7 @@ type Animal = {
   nextCheckup: string;
   lastCheckup: string;
   status: 'safe' | 'warning' | 'not-safe';
+  drug?: string;
 };
 
 type TreatmentLog = {
@@ -31,6 +33,23 @@ export default function Animals({ animals, treatments }: { animals: Animal[]; tr
   const [showAdd, setShowAdd] = useState(false);
   const [selectedAnimalId, setSelectedAnimalId] = useState<string | null>(null);
   const [showQrCodeModal, setShowQrCodeModal] = useState<string | null>(null);
+
+  const animalsWithDrugs = React.useMemo(() => {
+    return animals.map(animal => {
+      const animalTreatments = treatments.filter(t => t.animalId === animal.id);
+      const latestTreatment = animalTreatments.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
+      return {
+        ...animal,
+        drug: latestTreatment ? latestTreatment.medicine : undefined,
+      };
+    });
+  }, [animals, treatments]);
+
+  const [filteredAnimals, setFilteredAnimals] = useState<Animal[]>(animalsWithDrugs);
+
+  React.useEffect(() => {
+    setFilteredAnimals(animalsWithDrugs);
+  }, [animalsWithDrugs]); // Removed animals and treatments from dependency array
 
   const getBadge = (status: Animal['status']) => {
     const base = 'inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium';
@@ -77,7 +96,8 @@ export default function Animals({ animals, treatments }: { animals: Animal[]; tr
       </div>
 
       <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-        {animals.map((a) => (
+        <SearchAnimal animals={animalsWithDrugs} setFilteredAnimals={setFilteredAnimals} />
+        {filteredAnimals.map((a) => (
           <div key={a.id} className="bg-green-100 border border-gray-200 rounded-xl p-4 sm:p-6 shadow-md transition-all duration-200 ease-in-out hover:shadow-lg hover:scale-[1.01]">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-center gap-4">
