@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Pill } from 'lucide-react'; 
+import { Pill } from 'lucide-react';
+import QRCodeAnimal from '../FarmAnimals/QRCodeAnimal/QRCodeAnimal';
 
 interface AnimalDashboardProps {
   animal: {
@@ -38,7 +39,6 @@ const AnimalDashboard: React.FC<AnimalDashboardProps> = ({ animal, onClose, trea
   const animalData = {
     name: animal.name,
     id: animal.id,
-    qrCode: 'QR:QRCT001', // This can be dynamic if available in animal prop
     animalType: animal.type,
     breed: animal.breed,
     age: animal.age,
@@ -51,86 +51,101 @@ const AnimalDashboard: React.FC<AnimalDashboardProps> = ({ animal, onClose, trea
 
   // Filter treatmentHistory based on animal.id
   const animalTreatmentHistory = treatments.filter(t => t.animalId === animal.id);
+  const [showQrCodeModal, setShowQrCodeModal] = React.useState(false); // Add state for QR modal
 
   return (
-    <div className="p-4 sm:p-6 md:p-8 bg-gray-50 min-h-screen">
+    <div className="p-4 sm:p-6 md:p-6 bg-green-300 rounded-2xl min-h-screen">
+      {showQrCodeModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white p-6 rounded-lg shadow-lg relative max-w-sm w-full">
+            <button
+              onClick={() => setShowQrCodeModal(false)}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl"
+            >
+              &times;
+            </button>
+            <QRCodeAnimal animalId={animal.id} />
+          </div>
+        </div>
+      )}
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-8 pb-4 border-b border-gray-200">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-6 pb-4 border-b border-gray-200">
         <div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900">{animalData.name}</h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 mt-1">ID: {animalData.id}</p>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-green-800">{animalData.name}</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-green-600 mt-1">ID: {animalData.id}</p>
         </div>
         {/* QR Code and Back button */}
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-4 sm:mt-0">
-          <img
-            src={`https://api.qrserver.com/v1/create-qr-code/?size=96x96&data=${animal.id}`}
-            alt="QR Code"
-            className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 cursor-pointer rounded-lg shadow-md transition-transform duration-200 ease-in-out hover:scale-105"
-          />
-          <button onClick={onClose} className="rounded-lg bg-blue-600 px-4 py-2 sm:px-5 sm:py-2.5 text-base sm:text-lg lg:text-xl font-medium text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+          <button
+            onClick={() => setShowQrCodeModal(true)}
+            className="rounded-lg border border-green-300 text-green-700 bg-green-50 hover:bg-green-200 text-xs sm:text-sm px-3 py-1.5 transition-colors"
+          >
+            View QR Code
+          </button>
+          <button onClick={onClose} className="rounded-lg bg-green-600 px-4 py-2 sm:px-5 sm:py-2.5 text-base sm:text-lg lg:text-xl font-medium text-white shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
             Back to Animals
           </button>
         </div>
       </div>
 
       {/* Basic Information Card */}
-      <div className="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 sm:mb-8 border border-gray-200 animate-fade-in">
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Basic Information</h2>
+      <div className="bg-green-100 p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 sm:mb-8 border border-green-200 animate-fade-in">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-800 mb-4 sm:mb-6">Basic Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           <div className="flex flex-col">
-            <p className="text-gray-500 text-sm sm:text-md">Animal Type</p>
-            <p className="font-semibold text-gray-900 text-base sm:text-lg mt-1">{animalData.animalType}</p>
+            <p className="text-gray-600 text-sm sm:text-md">Animal Type</p>
+            <p className="font-semibold text-green-900 text-base sm:text-lg mt-1">{animalData.animalType}</p>
           </div>
           <div className="flex flex-col">
-            <p className="text-gray-500 text-sm sm:text-md">Farmer</p>
-            <p className="font-semibold text-gray-900 text-base sm:text-lg mt-1">{animalData.farmerName}</p>
+            <p className="text-gray-600 text-sm sm:text-md">Farmer</p>
+            <p className="font-semibold text-green-900 text-base sm:text-lg mt-1">{animalData.farmerName}</p>
           </div>
           <div className="flex flex-col">
-            <p className="text-gray-500 text-sm sm:text-md">Breed</p>
-            <p className="font-semibold text-gray-900 text-base sm:text-lg mt-1">{animalData.breed}</p>
+            <p className="text-gray-600 text-sm sm:text-md">Breed</p>
+            <p className="font-semibold text-green-900 text-base sm:text-lg mt-1">{animalData.breed}</p>
           </div>
           <div className="flex flex-col">
-            <p className="text-gray-500 text-sm sm:text-md">Registration date</p>
-            <p className="font-semibold text-gray-900 text-base sm:text-lg mt-1">{animalData.registrationDate}</p>
+            <p className="text-gray-600 text-sm sm:text-md">Registration date</p>
+            <p className="font-semibold text-green-900 text-base sm:text-lg mt-1">{animalData.registrationDate}</p>
           </div>
           <div className="flex flex-col">
-            <p className="text-gray-500 text-sm sm:text-md">Age</p>
-            <p className="font-semibold text-gray-900 text-base sm:text-lg mt-1">{animalData.age}</p>
+            <p className="text-gray-600 text-sm sm:text-md">Age</p>
+            <p className="font-semibold text-green-900 text-base sm:text-lg mt-1">{animalData.age}</p>
           </div>
           <div className="flex flex-col">
-            <p className="text-gray-500 text-sm sm:text-md">Farm Location</p>
-            <p className="font-semibold text-gray-900 text-base sm:text-lg mt-1">{animalData.farmLocation}</p>
+            <p className="text-gray-600 text-sm sm:text-md">Farm Location</p>
+            <p className="font-semibold text-green-900 text-base sm:text-lg mt-1">{animalData.farmLocation}</p>
           </div>
           <div className="flex flex-col">
-            <p className="text-gray-500 text-sm sm:text-md">Weight</p>
-            <p className="font-semibold text-gray-900 text-base sm:text-lg mt-1">{animalData.weight}</p>
+            <p className="text-gray-600 text-sm sm:text-md">Weight</p>
+            <p className="font-semibold text-green-900 text-base sm:text-lg mt-1">{animalData.weight}</p>
           </div>
           <div className="flex flex-col">
-            <p className="text-gray-500 text-sm sm:text-md">Last Checkup</p>
-            <p className="font-semibold text-gray-900 text-base sm:text-lg mt-1">{animalData.lastCheckup}</p>
+            <p className="text-gray-600 text-sm sm:text-md">Last Checkup</p>
+            <p className="font-semibold text-green-900 text-base sm:text-lg mt-1">{animalData.lastCheckup}</p>
           </div>
         </div>
       </div>
 
       {/* Treatment History Section */}
-      <div className="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-8 border border-gray-200 animate-fade-in">
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Treatment History</h2>
+      <div className="bg-green-100 p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-8 border border-green-200 animate-fade-in">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-800 mb-4 sm:mb-6">Treatment History</h2>
         <div className="space-y-6">
           {animalTreatmentHistory.map((treatment, index) => (
-            <div key={index} className="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200 transition-transform duration-200 ease-in-out hover:scale-[1.005]">
+            <div key={index} className="bg-green-200 p-4 sm:p-6 rounded-lg shadow-sm border border-green-200 transition-transform duration-200 ease-in-out hover:scale-[1.005]">
               <div className="flex flex-col sm:flex-row items-start sm:items-center mb-3">
-                <Pill className="text-blue-500 mr-3 mb-2 sm:mb-0" size={24} />
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800">{treatment.medicine}</h3>
-                <span className="sm:ml-4 text-gray-600 text-sm sm:text-md">Date: {treatment.date}</span>
+                <Pill className="text-green-500 mr-3 mb-2 sm:mb-0" size={24} />
+                <h3 className="text-lg sm:text-xl font-bold text-green-800">{treatment.medicine}</h3>
+                <span className="ml-auto text-gray-600 text-sm sm:text-md">Date: {treatment.date}</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm sm:text-md">
                 <div className="flex flex-col">
-                  <p className="text-gray-500">Veterinarian</p>
-                  <p className="font-semibold text-gray-900">{treatment.veterinarian}</p>
+                  <p className="text-gray-600">Veterinarian</p>
+                  <p className="font-semibold text-green-900">{treatment.veterinarian}</p>
                 </div>
-                <div className="flex flex-col">
-                  <p className="text-gray-500">Notes</p>
-                  <p className="font-semibold text-gray-900">{treatment.notes ?? '-'}</p>
+                <div className="flex flex-col ml-auto">
+                  <p className="text-gray-600">Notes</p>
+                  <p className="font-semibold text-green-900">{treatment.notes ?? '-'}</p>
                 </div>
               </div>
             </div>

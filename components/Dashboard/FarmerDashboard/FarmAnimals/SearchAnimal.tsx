@@ -84,7 +84,7 @@ const SearchAnimal: React.FC<SearchAnimalProps> = ({ animals, setFilteredAnimals
   const animalStatuses = ['safe', 'warning', 'not-safe'];
 
   return (
-    <div className="bg-green-100 p-6 sm:p-8 rounded-xl shadow-md mb-6 border border-green-200 animate-fade-in transition-all duration-200 ease-in-out hover:shadow-lg hover:scale-[1.01]">
+    <div className="bg-green-100 p-6 sm:p-8 rounded-xl shadow-md mb-6 border border-green-200 animate-fade-in transition-all duration-100 ease-in-out hover:shadow-lg hover:scale-[1.01]">
       <div className="flex flex-col sm:flex-row gap-4 mb-4">
         <input
           type="text"
