@@ -13,7 +13,7 @@ const data = [
 
 const AntimicrobialCost: React.FC = () => {
   return (
-    <ComposedChart width={450} height={250} data={data}>
+    <ComposedChart width={500} height={250} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="month" />
         <YAxis />

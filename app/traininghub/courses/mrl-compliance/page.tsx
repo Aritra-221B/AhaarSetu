@@ -3,10 +3,10 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-300 via-green-200 to-green-100">
+    <div className="min-h-screen bg-gradient-to-b from-green-900 via-green-700 to-green-300">
       <main className="max-w-4xl mx-auto px-4 py-8">
         <div className="mb-6 flex items-center justify-between mt-14">
-          <h1 className="text-2xl font-semibold text-gray-900">Maximum Residue Limits (MRL) Compliance</h1>
+          <h1 className="text-2xl font-semibold text-green-50">Maximum Residue Limits (MRL) Compliance</h1>
         </div>
 
         <section className="space-y-6 bg-gradient-to-b from-green-100 via-green-200 to-green-200 border rounded-xl shadow-sm p-6">

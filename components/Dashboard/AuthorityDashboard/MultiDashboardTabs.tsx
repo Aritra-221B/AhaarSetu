@@ -9,8 +9,8 @@ import UsageByStateMap from "./UsageByStatemap";
 
 export default function MultiDashboardTabs() {
   const [activeTab, setActiveTab] = useState<
-    "dashboard1" | "dashboard2" | "dashboard3"
-  >("dashboard1");
+    "state" | "mrl" | "antimicrobial"
+  >("state");
 
   return (
     <>
@@ -19,13 +19,13 @@ export default function MultiDashboardTabs() {
         {/* Tabs */}
         <div className="flex flex-col sm:flex-row border-b mb-4 sm:mb-6">
           {[
-            { id: "dashboard1", label: "Dashboard 1" },
-            { id: "dashboard2", label: "Dashboard 2" },
-            { id: "dashboard3", label: "Dashboard 3" },
+            { id: "state", label: "State Analysis" },
+            { id: "mrl", label: "Microbial Residue" },
+            { id: "antimicrobial", label: "Antimicrobial Usage" },
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as "dashboard1" | "dashboard2" | "dashboard3")}
+              onClick={() => setActiveTab(tab.id as "state" | "mrl" | "antimicrobial")}
               className={`flex-1 px-3 py-2 sm:px-6 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-200 ${
                 activeTab === tab.id
                   ? "text-green-700 border-b-4 border-green-600 bg-green-50"
@@ -40,7 +40,7 @@ export default function MultiDashboardTabs() {
         {/* Content */}
         <div className="p-2 sm:p-4 md:p-6">
           {/* Dashboard 1 */}
-          {activeTab === "dashboard1" && (
+          {activeTab === "state" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               <div className="bg-green-50 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
                 <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">
@@ -52,11 +52,11 @@ export default function MultiDashboardTabs() {
           )}
 
           {/* Dashboard 2 */}
-          {activeTab === "dashboard2" && (
+          {activeTab === "mrl" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               <div className="bg-green-50 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
                 <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">
-                  Antimicrobial Usage, Treatment-Wise
+                Treatment-Wise Antimicrobial Usage
                 </h2>
                 <TreatmentWiseUsage />
               </div>
@@ -68,7 +68,7 @@ export default function MultiDashboardTabs() {
           )}
 
           {/* Dashboard 3 */}
-          {activeTab === "dashboard3" && (
+          {activeTab === "antimicrobial" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               <div className="bg-green-50 p-6 sm:p-8 rounded-2xl shadow-lg border min-h-[350px] sm:min-h-[400px]">
                 <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">

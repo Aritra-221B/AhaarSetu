@@ -15,18 +15,18 @@ const MRLIndicator: React.FC = () => {
         cy="50%"
         innerRadius="70%"
         outerRadius="90%"
-        barSize={20}
+        barSize={50}
         data={data}
         startAngle={180}
         endAngle={0}
       >
         <RadialBar dataKey="value" fill="#4CAF50" />
-        <Text x={300} y={200} textAnchor="middle" dominantBaseline="middle" className="text-2xl font-bold" fill="#4CAF50">{`${data[0].value}%`}</Text>
+        <Text x={270} y={200} textAnchor="middle" dominantBaseline="middle" className="text-2xl font-bold" fill="#4CAF50">{`${data[0].value}%`}</Text>
         <Legend
           iconSize={10}
-          layout="vertical"
+          layout="horizontal"
           verticalAlign="middle"
-          wrapperStyle={{ top: 0, left: 350, lineHeight: "24px" }}
+          wrapperStyle={{ top: 0, left: 0, lineHeight: "500px" }}
         />
       </RadialBarChart>
     </ResponsiveContainer>

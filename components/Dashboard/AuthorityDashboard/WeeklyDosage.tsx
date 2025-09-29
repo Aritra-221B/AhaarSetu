@@ -13,7 +13,7 @@ const data = [
 
 const WeeklyDosage: React.FC = () => {
   return (
-    <LineChart width={350} height={250} data={data}>
+    <LineChart width={500} height={250} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="week" />
       <YAxis />
